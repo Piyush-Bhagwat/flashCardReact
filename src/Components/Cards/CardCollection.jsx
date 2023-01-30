@@ -1,12 +1,36 @@
 import React, { useEffect, useState } from "react";
 import CardForm from "./cardForm";
 import DisplayCard from "./displayCard";
-
+import { storage } from "../../firebase-config";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function CardCollection() {
     const [notes, setNotes] = useState(null);
+    
+    const downloadData = async () => {
+        getDownloadURL(ref(storage, "userNotes/piyush-data.txt")).then(
+            (url) => {
+                fetch(url)
+                    .then((x) => x.text())
+                    .then((y) => {
+                        console.log("Retrived Data");
+                        if (y) setNotes(JSON.parse(y));
+                    });
+            }
+        );
+    };
 
-    const addCard = (nc) => {
+    const uploadData = async () => {
+        const dataRef = ref(storage, "userNotes/piyush-data.txt");
+        const dataJSON = JSON.stringify(notes);
+        const file = new Blob([dataJSON], { type: "application/json" });
+
+        await uploadBytes(dataRef, file).then(
+            console.log("uploaded Data to FireBase")
+        );
+    };
+
+    const addCard = async (nc) => {
         if (nc.content !== "") {
             setNotes((prevState) => {
                 if (prevState === null) {
@@ -19,7 +43,7 @@ export default function CardCollection() {
 
     const deleteNote = (id) => {
         console.log("Deleting " + id);
-        const filteredNotes = notes.filter((note) => note.key !== id);  
+        const filteredNotes = notes.filter((note) => note.key !== id);
         if (filteredNotes.length === 0) {
             setNotes(null);
         } else {
@@ -42,19 +66,17 @@ export default function CardCollection() {
             );
     }
 
-    //Retriving Data
-    useEffect(() => {
-        const retrivedData = JSON.parse(localStorage.getItem("notes"));
-        if (retrivedData) setNotes(retrivedData);
-        console.log("Retrived Data: ", retrivedData);
+    //Saving Data
+    useEffect(() => {        
+        localStorage.setItem("notes", JSON.stringify(notes));
+        uploadData();
+    }, [notes]);
+
+     //Retriving Data
+     useEffect(() => {
+        downloadData();
     }, []);
 
-    //Saving Data
-    useEffect(() => {
-        localStorage.setItem("notes", JSON.stringify(notes));
-        console.log("Saved Data: ", notes);
-    }, [notes]);
-    
     return (
         <div className="cardCollection">
             <CardForm newCard={addCard} />
