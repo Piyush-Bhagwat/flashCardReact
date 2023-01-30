@@ -6,7 +6,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function CardCollection() {
     const [notes, setNotes] = useState(null);
-    
+
     const downloadData = async () => {
         getDownloadURL(ref(storage, "userNotes/piyush-data.txt")).then(
             (url) => {
@@ -25,7 +25,7 @@ export default function CardCollection() {
         const dataJSON = JSON.stringify(notes);
         const file = new Blob([dataJSON], { type: "application/json" });
 
-        await uploadBytes(dataRef, file).then(
+        uploadBytes(dataRef, file).then(
             console.log("uploaded Data to FireBase")
         );
     };
@@ -67,13 +67,15 @@ export default function CardCollection() {
     }
 
     //Saving Data
-    useEffect(() => {        
-        localStorage.setItem("notes", JSON.stringify(notes));
-        uploadData();
+    useEffect(() => {
+        setTimeout(() => {
+            localStorage.setItem("notes", JSON.stringify(notes));
+            uploadData();
+        }, 600);
     }, [notes]);
 
-     //Retriving Data
-     useEffect(() => {
+    //Retriving Data
+    useEffect(() => {
         downloadData();
     }, []);
 
