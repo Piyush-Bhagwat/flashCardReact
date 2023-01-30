@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;900&display=swap');
+
+:root {
+    --backColor: #2C3333;
+    --textColor: #E7F6F2;
+    --darkColor: #395B64;
+    --lightColor: #A5C9CA;
+
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; shadow */
+}
+
+::selection{
+    background-color: var(--lightColor);
+    color: var(--backColor);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+* {
+    padding: 0;
+    margin: 0;
+    color: var(--textColor);
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.body {
+    background-color: var(--backColor);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+/* -----------------HEader------------- */
+
+.header {
+    text-align: center;
+    padding: 2% 0;
+}
+
+.header h1 {
+    letter-spacing: 5px;
+}
+
+
+/* --------------------Cards-------------------- */
+
+.cardCollection {
+    display: flex;
+    padding: 2% 4%;
+    height: 76%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.card {
+    width: 25%;
+    margin: 15px;
+    height: fit-content;
+    display: inline-block;
+    background-color: var(--darkColor);
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 30%) 5px 10px 8px 0px;
+    padding: 1.5%;
+    border: 1px solid transparent;
+    transition: all ease-in 0.15s;
+}
+
+.card:hover {
+    border: 1px solid var(--lightColor);
+}
+
+.card .tag {
+    background-color: var(--lightColor);
+    color: var(--backColor);
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+
+}
+
+.inputCard input,
+textarea {
+    border: none;
+    width: 38%;
+    display: block;
+    background: transparent;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    height: 120px;
+}
+
+.saveBtn {
+    padding: 5px 14px;
+    background: var(--lightColor);
+    color: var(--backColor);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all ease 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+
+}
+
+.delBtn {
+    background: none;
+    border: none;
+    font-size: 1.3em;
+    transition: all ease 0.2s;
+    cursor: pointer;
+}
+
+.delBtn:hover,
+.saveBtn:hover {
+    transform: scale(1.1);
+}
+
+.tagBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+    outline: none;
+}
+
+input::placeholder {
+    color: var(--backColor);
+}
+
+textarea::placeholder {
+    color: var(--textColor);
+}
+
+.copyright{
+    text-align: center;
+    font-weight: 100;
+    color: var(--lightColor);
+}
+
+.copyright a{
+    color: var(--lightColor);
+    text-decoration: none;
+}
+
+.copyright a:hover{
+    color: rgb(233, 87, 87);
+}
+
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text)
+}
+
+
+/* --------------Responsive-------------- */
+
+@media screen and (max-width: 450px) {
+    .card {
+        padding: 5%;
+        width: 100%;
+    }
+
+    .cardCollection {
+        height: 100%;
+    }
+
+}
+
+@media screen and (min-width: 460px) and (max-width: 800px) {
+    .card {
+        width: 40%;
+    }
+
+}
