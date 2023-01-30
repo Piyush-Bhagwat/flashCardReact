@@ -58,11 +58,35 @@
 
 .header {
     text-align: center;
-    padding: 2% 0;
+    padding: 2% 2%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header h1 {
     letter-spacing: 5px;
+}
+
+.userPic img{
+    width: 60%;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all ease 0.2s;
+}
+
+.userPic img:hover{
+    transform: scale(1.1);
+}
+
+.login button{
+    padding: 5px 14px;
+    background: var(--lightColor);
+    color: var(--backColor);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all ease 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
 }
 
 
@@ -194,6 +218,10 @@ textarea::placeholder {
 
     .cardCollection {
         height: 100%;
+    }
+
+    .userPic img{
+        width: 50px;
     }
 
 }

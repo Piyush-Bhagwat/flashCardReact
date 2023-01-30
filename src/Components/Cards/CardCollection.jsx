@@ -4,24 +4,32 @@ import DisplayCard from "./displayCard";
 import { storage } from "../../firebase-config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-export default function CardCollection() {
+var isRetreving = true;
+
+export function setRetriving(val){
+    isRetreving= val;
+}
+
+export default function CardCollection({user}) {
     const [notes, setNotes] = useState(null);
 
     const downloadData = async () => {
-        getDownloadURL(ref(storage, "userNotes/piyush-data.txt")).then(
+        isRetreving = true;
+        getDownloadURL(ref(storage, `userNotes/${user.UID}.txt`)).then(
             (url) => {
                 fetch(url)
                     .then((x) => x.text())
                     .then((y) => {
-                        console.log("Retrived Data");
                         if (y) setNotes(JSON.parse(y));
+                        isRetreving = false;
+                        console.log("Retrived Data");
                     });
             }
         );
     };
 
     const uploadData = async () => {
-        const dataRef = ref(storage, "userNotes/piyush-data.txt");
+        const dataRef = ref(storage, `userNotes/${user.UID}.txt`);
         const dataJSON = JSON.stringify(notes);
         const file = new Blob([dataJSON], { type: "application/json" });
 
@@ -30,14 +38,15 @@ export default function CardCollection() {
         );
     };
 
-    const addCard = async (nc) => {
+    const addCard = (nc) => {
+        isRetreving = false;
         if (nc.content !== "") {
             setNotes((prevState) => {
                 if (prevState === null) {
                     return [nc];
                 } else return [nc, ...prevState];
             });
-            console.log("Card Saved: ", nc);
+            console.log("Cd Saved: ", notes);
         }
     };
 
@@ -68,10 +77,11 @@ export default function CardCollection() {
 
     //Saving Data
     useEffect(() => {
-        setTimeout(() => {
+        console.log("Should Save: ", !isRetreving);
+        if (!isRetreving) {
             localStorage.setItem("notes", JSON.stringify(notes));
             uploadData();
-        }, 600);
+        }
     }, [notes]);
 
     //Retriving Data
