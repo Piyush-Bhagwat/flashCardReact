@@ -156,15 +156,16 @@ textarea {
 
 }
 
-.delBtn {
+.controls button {
     background: none;
     border: none;
     font-size: 1.3em;
+    margin-left: 21px;
     transition: all ease 0.2s;
     cursor: pointer;
 }
 
-.delBtn:hover,
+.controls button:hover,
 .saveBtn:hover {
     transform: scale(1.1);
 }
