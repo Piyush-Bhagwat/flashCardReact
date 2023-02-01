@@ -56,6 +56,7 @@ export default function App() {
     }
 
     const logOut = () =>{
+        console.log(`${userDetail.name}  User Logged Out`);
         localStorage.clear();
         setRetriving(true);
         setLogIn(false);

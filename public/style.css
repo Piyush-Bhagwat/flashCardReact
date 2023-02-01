@@ -9,7 +9,7 @@
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; shadow */
 }
 
-::selection{
+::selection {
     background-color: var(--lightColor);
     color: var(--backColor);
 }
@@ -17,26 +17,26 @@
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 5px;
 
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 5px;
 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
+}
 
 * {
     padding: 0;
@@ -52,6 +52,8 @@
     display: flex;
     overflow: hidden;
     flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
 }
 
 /* -----------------HEader------------- */
@@ -67,18 +69,18 @@
     letter-spacing: 5px;
 }
 
-.userPic img{
+.userPic img {
     width: 60%;
     cursor: pointer;
     border-radius: 50%;
     transition: all ease 0.2s;
 }
 
-.userPic img:hover{
+.userPic img:hover {
     transform: scale(1.1);
 }
 
-.login button{
+.login button {
     padding: 5px 14px;
     background: var(--lightColor);
     color: var(--backColor);
@@ -188,18 +190,18 @@ textarea::placeholder {
     color: var(--textColor);
 }
 
-.copyright{
+.copyright {
     text-align: center;
     font-weight: 100;
     color: var(--lightColor);
 }
 
-.copyright a{
+.copyright a {
     color: var(--lightColor);
     text-decoration: none;
 }
 
-.copyright a:hover{
+.copyright a:hover {
     color: rgb(233, 87, 87);
 }
 
@@ -211,17 +213,34 @@ textarea::placeholder {
 /* --------------Responsive-------------- */
 
 @media screen and (max-width: 450px) {
+    .header {
+        padding: 2% 5%;
+    }
+
+    .header h1 {
+        font-size: 1.5em;
+        letter-spacing: 3px;
+    }
+
     .card {
         padding: 5%;
-        width: 100%;
+        margin: 15px 0;
+        width: auto;
     }
 
     .cardCollection {
         height: 100%;
+        flex-wrap: nowrap;
+        flex-direction: column;
+
     }
 
-    .userPic img{
-        width: 50px;
+    .tag {
+        margin-right: 20px;
+    }
+
+    .userPic img {
+        width: 40px;
     }
 
 }
@@ -230,5 +249,4 @@ textarea::placeholder {
     .card {
         width: 40%;
     }
-
 }

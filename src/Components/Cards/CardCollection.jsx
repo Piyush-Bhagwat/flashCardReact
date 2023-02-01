@@ -46,7 +46,7 @@ export default function CardCollection({user}) {
                     return [nc];
                 } else return [nc, ...prevState];
             });
-            console.log("Cd Saved: ", notes);
+            console.log("Card Saved: ", nc);
         }
     };
 
@@ -77,7 +77,6 @@ export default function CardCollection({user}) {
 
     //Saving Data
     useEffect(() => {
-        console.log("Should Save: ", !isRetreving);
         if (!isRetreving) {
             localStorage.setItem("notes", JSON.stringify(notes));
             uploadData();

@@ -4,7 +4,7 @@ import LogIn from "./LogIn";
 export default function Header({ isLoged, google, src, out}) {
     return (
         <div className="header">
-            <div>{!isLoged && <LogIn log={google} />}</div>
+            {!isLoged && <LogIn log={google} />}
             <h1>Flash Cards</h1>
 
             <div className="userPic">
