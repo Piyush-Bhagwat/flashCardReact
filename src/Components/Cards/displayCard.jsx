@@ -25,6 +25,12 @@ export default function DisplayCard({ content, tag, id, onDelete, onEdit }) {
         onEdit(editValue);
     }
 
+    document.addEventListener("keypress", (e) =>{
+        if(e.key === "Enter"){
+            handleSave();
+        }
+    })
+
     return (
         <div className="card">
             {isEditable ? (
