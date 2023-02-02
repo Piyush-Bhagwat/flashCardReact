@@ -9,7 +9,7 @@ export default function CardForm({ newCard }) {
             key: uuid(),
         };
         document.querySelector(".inputCard textarea").value = "";
-        document.querySelector(".inputCard input").value = "";
+        document.querySelector(".inputCard input").value = ""; 
         newCard(nc);
     }
 
