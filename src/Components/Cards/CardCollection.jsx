@@ -60,6 +60,13 @@ export default function CardCollection({user}) {
         }
     };
 
+    const editNote = (eNote) => {
+
+        setNotes((prev) => prev.map(note => note.key === eNote.key? eNote: note));
+
+        console.log("Changed note at ", eNote);
+    }
+
     function createCards(d) {
         if (d === "") {
             return;
@@ -71,6 +78,7 @@ export default function CardCollection({user}) {
                     content={d.content}
                     tag={d.tag}
                     onDelete={deleteNote}
+                    onEdit={editNote}
                 />
             );
     }
